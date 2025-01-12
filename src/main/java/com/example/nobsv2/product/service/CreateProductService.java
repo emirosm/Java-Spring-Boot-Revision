@@ -1,12 +1,9 @@
 package com.example.nobsv2.product.service;
 
 import com.example.nobsv2.Command;
-import com.example.nobsv2.exceptions.ErrorMessages;
-import com.example.nobsv2.exceptions.ProductNotValidException;
 import com.example.nobsv2.product.ProductRepository;
 import com.example.nobsv2.product.model.Product;
 import com.example.nobsv2.product.model.ProductDTO;
-import com.example.nobsv2.product.validators.ProductValidator;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
