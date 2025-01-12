@@ -25,14 +25,17 @@ public class ProductController {
     @Autowired
     private final UpdateProductService updateProductService;
     @Autowired
-    private GetProductService getProductService;
+    private final GetProductService getProductService;
 
-    public ProductController(CreateProductService createProductService, GetProductsService getProductsService, DeleteProductService deleteProductService, UpdateProductService updateProductService, GetProductService getProductService) {
+    private final SearchProductService searchProductService;
+
+    public ProductController(CreateProductService createProductService, GetProductsService getProductsService, DeleteProductService deleteProductService, UpdateProductService updateProductService, GetProductService getProductService, SearchProductService searchProductService) {
         this.createProductService = createProductService;
         this.getProductsService = getProductsService;
         this.deleteProductService = deleteProductService;
         this.updateProductService = updateProductService;
         this.getProductService = getProductService;
+        this.searchProductService = searchProductService;
     }
 
     @PostMapping("/product")
@@ -60,6 +63,9 @@ public class ProductController {
         return deleteProductService.execute(id);
     }
 
-
+    @GetMapping("/product/search")
+    public ResponseEntity<List<ProductDTO>> searchProductByName(@RequestParam String name) {
+        return searchProductService.execute(name);
+    }
 
 }

@@ -6,6 +6,7 @@ import com.example.nobsv2.product.ProductRepository;
 import com.example.nobsv2.product.model.Product;
 import com.example.nobsv2.product.model.ProductDTO;
 import com.example.nobsv2.product.model.UpdateProductCommand;
+import com.example.nobsv2.product.validators.ProductValidator;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -26,6 +27,7 @@ public class UpdateProductService implements Command<UpdateProductCommand, Produ
         Optional<Product> productOptional = productRepository.findById(command.getId());
         if(productOptional.isPresent()){
             Product product = command.getProduct();
+            ProductValidator.execute(product);
             product.setId(command.getId());
             productRepository.save(product);
             return ResponseEntity.status(HttpStatus.OK).body(new ProductDTO(product));
