@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/customer")
 public class CustomerController {
 
-    private CustomerRepository customerRepository;
+    private final CustomerRepository customerRepository;
 
     public CustomerController(CustomerRepository customerRepository) {
         this.customerRepository = customerRepository;

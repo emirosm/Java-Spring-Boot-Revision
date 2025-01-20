@@ -10,6 +10,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 
 import java.util.Arrays;
+import java.util.List;
 
 @Configuration
 @EnableCaching
@@ -19,13 +20,13 @@ public class CacheConfiguration {
     public CacheManager cacheManager() {
         ConcurrentMapCacheManager manager = new ConcurrentMapCacheManager();
         manager.setAllowNullValues(false);
-        manager.setCacheNames(Arrays.asList("ProductCache"));
+        manager.setCacheNames(List.of("ProductCache"));
         return manager;
     }
 
     @CacheEvict(value = "ProductCache", allEntries = true)
     @Scheduled(fixedDelay = 7000, initialDelay = 0)
     public void evictProductCache() {
-        System.out.println("Product cache evicted");
+        //System.out.println("Product cache evicted");
     }
 }
